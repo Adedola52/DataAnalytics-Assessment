@@ -17,7 +17,16 @@ To answer this, I retrieved the required information such as customer_id and con
 - "Low Frequency" (≤2 transactions/month)
 
 **Code Explanation:**
-
+To answer this, I used a Common Table Expression (CTE). I started by joining the users_customuser and savings_savingsaccount tables to get customer ids and their successful transaction dates, grouping them by customer and transaction month using DATE_FORMAT. I then counted the number of transactions each customer made per month.
+In the second CTE, I calculated the average number of transactions per month for each customer by taking the average of their monthly transaction counts.
+Next, I categorized customers into frequency groups using a CASE statement:
+- Customers with ≤ 2 average transactions/month were labeled "Low Frequency"
+- Those with 3–9 were labeled "Medium Frequency"
+- More than 9 were labeled "High Frequency"
+  
+Finally, in the main query, I grouped customers by their frequency category to:
+- Count how many customers fall into each group
+- Calculate the average monthly transaction volume for each group
 
 # Assessment_Q3: 
 **Scenario:** The ops team wants to flag accounts with no inflow transactions for over one year
